@@ -63,9 +63,9 @@ app.layout = html.Div([
     "padding": "30px"
 })
 
-# -------------------------
+# -----------------------------------
 # Callback
-# -------------------------
+# -----------------------------------
 @app.callback(
     Output("graph1", "figure"),
     Output("graph2", "figure"),
