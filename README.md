@@ -1,4 +1,3 @@
-# fitness-dashboard
 # Fitness Dashboard
 
 ## 📌 Project Description
