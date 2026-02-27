@@ -92,11 +92,15 @@ def update_dashboard(selected_range):
     hover_data=["date"],
     title="Calories vs Weight"
 )
+<<<<<<< HEAD
     
     fig1.update_layout(template="plotly_white")
     fig2.update_layout(template="plotly_white")
     fig3.update_layout(template="plotly_white")
     
+=======
+
+>>>>>>> a71499a25d6ff2a5cf3b9bdebeb43e37955be59f
     # Summary Calculations
     latest_weight = filtered_df["weight"].iloc[-1]
     avg_calories = round(filtered_df["calories"].mean(), 2)
@@ -137,5 +141,8 @@ def update_dashboard(selected_range):
 # -------------------------
 if __name__ == "__main__":
     app.run(debug=True)
+<<<<<<< HEAD
     
     
+=======
+>>>>>>> a71499a25d6ff2a5cf3b9bdebeb43e37955be59f
