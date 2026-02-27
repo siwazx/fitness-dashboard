@@ -86,11 +86,12 @@ def update_dashboard(selected_range):
     )
 
     fig3 = px.scatter(
-        filtered_df,
-        x="calories",
-        y="weight",
-        title="Calories vs Weight"
-    )
+    filtered_df,
+    x="calories",
+    y="weight",
+    hover_data=["date"],
+    title="Calories vs Weight"
+)
 
     # Summary Calculations
     latest_weight = filtered_df["weight"].iloc[-1]
