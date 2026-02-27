@@ -71,11 +71,12 @@ def update_dashboard(selected_range):
 
     # Create Graphs
     fig1 = px.line(
-        filtered_df,
-        x="date",
-        y="weight",
-        title="Weight Over Time"
-    )
+    filtered_df,
+    x="date",
+    y="weight",
+    title="Weight Over Time",
+    markers=True
+)
 
     fig2 = px.bar(
         filtered_df,
