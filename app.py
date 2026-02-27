@@ -17,7 +17,13 @@ app = dash.Dash(__name__)
 # Layout
 # -------------------------
 app.layout = html.Div([
-    html.H1("Fitness Dashboard", style={"textAlign": "center"}),
+    html.H1(
+    "🏋️ Fitness Tracking Dashboard",
+    style={
+        "textAlign": "center",
+        "marginBottom": "20px"
+    }
+),
 
     dcc.Dropdown(
         id="date-range",
@@ -49,9 +55,8 @@ app.layout = html.Div([
     dcc.Graph(id='weight-trend-chart'),
 
 ], style={
-    "backgroundColor": "#f4f6f9",
-    "padding": "30px",
-    "fontFamily": "Arial"
+    "backgroundColor": "#f5f5f5",
+    "padding": "30px"
 })
 
 # -------------------------
