@@ -4,14 +4,20 @@ from dash.dependencies import Input, Output
 import pandas as pd
 import plotly.express as px
 
-# โหลดข้อมูล
+# -------------------------
+# Load Dataset
+# -------------------------
 df = pd.read_csv("data.csv")
 df["date"] = pd.to_datetime(df["date"])
+df = df.sort_values("date")
 
 app = dash.Dash(__name__)
 
+# -------------------------
+# Layout
+# -------------------------
 app.layout = html.Div([
-    html.H1("Fitness Dashboard"),
+    html.H1("Fitness Dashboard", style={"textAlign": "center"}),
 
     dcc.Dropdown(
         id="date-range",
@@ -21,7 +27,21 @@ app.layout = html.Div([
             {"label": "All", "value": "all"},
         ],
         value="all",
-        clearable=False
+        clearable=False,
+        style={"width": "50%", "margin": "auto"}
+    ),
+
+    html.Br(),
+
+    # Summary Section
+    html.Div(
+        id="summary",
+        style={
+            "display": "flex",
+            "justifyContent": "center",
+            "gap": "20px",
+            "marginBottom": "30px"
+        }
     ),
 
     dcc.Graph(id="graph1"),
@@ -29,33 +49,85 @@ app.layout = html.Div([
     dcc.Graph(id="graph3")
 ])
 
-
+# -------------------------
+# Callback
+# -------------------------
 @app.callback(
     Output("graph1", "figure"),
     Output("graph2", "figure"),
     Output("graph3", "figure"),
+    Output("summary", "children"),
     Input("date-range", "value")
 )
-def update_graphs(selected_range):
+def update_dashboard(selected_range):
 
+    # Filter Data
     if selected_range == "7":
-        filtered_df = df.sort_values("date").tail(7)
+        filtered_df = df.tail(7)
     elif selected_range == "30":
-        filtered_df = df.sort_values("date").tail(30)
+        filtered_df = df.tail(30)
     else:
         filtered_df = df
 
-    fig1 = px.line(filtered_df, x="date", y="weight",
-                   title="Weight Over Time")
+    # Create Graphs
+    fig1 = px.line(
+        filtered_df,
+        x="date",
+        y="weight",
+        title="Weight Over Time"
+    )
 
-    fig2 = px.bar(filtered_df, x="date", y="calories",
-                  title="Daily Calories")
+    fig2 = px.bar(
+        filtered_df,
+        x="date",
+        y="calories",
+        title="Daily Calories"
+    )
 
-    fig3 = px.scatter(filtered_df, x="calories", y="weight",
-                      title="Calories vs Weight")
+    fig3 = px.scatter(
+        filtered_df,
+        x="calories",
+        y="weight",
+        title="Calories vs Weight"
+    )
 
-    return fig1, fig2, fig3
+    # Summary Calculations
+    latest_weight = filtered_df["weight"].iloc[-1]
+    avg_calories = round(filtered_df["calories"].mean(), 2)
+    total_entries = len(filtered_df)
+
+    summary_cards = [
+        html.Div(
+            f"Latest Weight: {latest_weight} kg",
+            style={
+                "padding": "15px",
+                "border": "1px solid black",
+                "borderRadius": "8px"
+            }
+        ),
+        html.Div(
+            f"Average Calories: {avg_calories}",
+            style={
+                "padding": "15px",
+                "border": "1px solid black",
+                "borderRadius": "8px"
+            }
+        ),
+        html.Div(
+            f"Entries: {total_entries}",
+            style={
+                "padding": "15px",
+                "border": "1px solid black",
+                "borderRadius": "8px"
+            }
+        )
+    ]
+
+    return fig1, fig2, fig3, summary_cards
 
 
+# -------------------------
+# Run App
+# -------------------------
 if __name__ == "__main__":
     app.run(debug=True)
