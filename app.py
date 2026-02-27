@@ -108,6 +108,9 @@ def update_dashboard(selected_range):
     else:
         weight_fig = px.line(title="No data available")
 
+    if filtered_df.empty:
+        empty_fig = px.line(title="No data available")
+    return empty_fig, empty_fig, empty_fig, empty_fig, []
 
     # Summary Calculations
     latest_weight = filtered_df["weight"].iloc[-1]
