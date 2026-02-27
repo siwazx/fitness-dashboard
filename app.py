@@ -10,8 +10,8 @@ df["date"] = pd.to_datetime(df["date"])
 # สร้างกราฟทั้ง 3 ตัว
 fig1 = px.line(df, x="date", y="weight", title="Weight Over Time")
 fig2 = px.bar(df, x="date", y="calories", title="Daily Calories")
-fig3 = px.scatter(df, x="steps", y="workout_minutes",
-                  title="Steps vs Workout Minutes")
+fig3 = px.scatter(df, x="calories", y="weight",
+                  title="Calories vs Weight")
 
 app = dash.Dash(__name__)
 
