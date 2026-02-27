@@ -53,6 +53,10 @@ app.layout = html.Div([
     dcc.Graph(id="graph2"),
     dcc.Graph(id="graph3"),
     dcc.Graph(id='weight-trend-chart'),
+    html.P(
+    "This dashboard helps track weight and calorie trends over time.",
+    style={"textAlign": "center", "marginTop": "20px"}
+),
 
 ], style={
     "backgroundColor": "#f5f5f5",
