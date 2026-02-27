@@ -95,7 +95,18 @@ def update_dashboard(selected_range):
     hover_data=["date"],
     title="Calories vs Weight"
 )
-
+    
+# Weight Trend Chart (Duplicate but separate component)
+    if not filtered_df.empty:
+        weight_fig = px.line(
+        filtered_df,
+        x="date",
+        y="weight",
+        title="Weight Trend Detail",
+        markers=True
+    )
+    else:
+        weight_fig = px.line(title="No data available")
 
 
     # Summary Calculations
