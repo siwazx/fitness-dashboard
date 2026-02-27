@@ -141,7 +141,7 @@ def update_dashboard(selected_range):
         )
     ]
 
-    return fig1, fig2, fig3, summary_cards
+    return fig1, fig2, fig3, weight_fig, summary_cards
 
 
 # -------------------------
