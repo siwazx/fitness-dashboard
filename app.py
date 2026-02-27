@@ -46,8 +46,10 @@ app.layout = html.Div([
 
     dcc.Graph(id="graph1"),
     dcc.Graph(id="graph2"),
-    dcc.Graph(id="graph3")
+    dcc.Graph(id="graph3"),
+    dcc.Graph(id='weight-trend-chart'),
 ])
+    
 
 # -------------------------
 # Callback
@@ -56,6 +58,7 @@ app.layout = html.Div([
     Output("graph1", "figure"),
     Output("graph2", "figure"),
     Output("graph3", "figure"),
+    Output("weight-trend-chart", "figure"),
     Output("summary", "children"),
     Input("date-range", "value")
 )
@@ -92,15 +95,9 @@ def update_dashboard(selected_range):
     hover_data=["date"],
     title="Calories vs Weight"
 )
-<<<<<<< HEAD
-    
-    fig1.update_layout(template="plotly_white")
-    fig2.update_layout(template="plotly_white")
-    fig3.update_layout(template="plotly_white")
-    
-=======
 
->>>>>>> a71499a25d6ff2a5cf3b9bdebeb43e37955be59f
+
+
     # Summary Calculations
     latest_weight = filtered_df["weight"].iloc[-1]
     avg_calories = round(filtered_df["calories"].mean(), 2)
@@ -139,10 +136,8 @@ def update_dashboard(selected_range):
 # -------------------------
 # Run App
 # -------------------------
+
 if __name__ == "__main__":
     app.run(debug=True)
-<<<<<<< HEAD
-    
-    
-=======
->>>>>>> a71499a25d6ff2a5cf3b9bdebeb43e37955be59f
+
+
