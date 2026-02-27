@@ -71,11 +71,12 @@ def update_dashboard(selected_range):
 
     # Create Graphs
     fig1 = px.line(
-        filtered_df,
-        x="date",
-        y="weight",
-        title="Weight Over Time"
-    )
+    filtered_df,
+    x="date",
+    y="weight",
+    title="Weight Over Time",
+    markers=True
+)
 
     fig2 = px.bar(
         filtered_df,
@@ -85,12 +86,17 @@ def update_dashboard(selected_range):
     )
 
     fig3 = px.scatter(
-        filtered_df,
-        x="calories",
-        y="weight",
-        title="Calories vs Weight"
-    )
-
+    filtered_df,
+    x="calories",
+    y="weight",
+    hover_data=["date"],
+    title="Calories vs Weight"
+)
+    
+    fig1.update_layout(template="plotly_white")
+    fig2.update_layout(template="plotly_white")
+    fig3.update_layout(template="plotly_white")
+    
     # Summary Calculations
     latest_weight = filtered_df["weight"].iloc[-1]
     avg_calories = round(filtered_df["calories"].mean(), 2)
@@ -131,3 +137,5 @@ def update_dashboard(selected_range):
 # -------------------------
 if __name__ == "__main__":
     app.run(debug=True)
+    
+    
