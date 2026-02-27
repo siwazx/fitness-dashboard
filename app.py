@@ -33,7 +33,6 @@ app.layout = html.Div([
 
     html.Br(),
 
-    # Summary Section
     html.Div(
         id="summary",
         style={
@@ -48,8 +47,12 @@ app.layout = html.Div([
     dcc.Graph(id="graph2"),
     dcc.Graph(id="graph3"),
     dcc.Graph(id='weight-trend-chart'),
-])
-    
+
+], style={
+    "backgroundColor": "#f4f6f9",
+    "padding": "30px",
+    "fontFamily": "Arial"
+})
 
 # -------------------------
 # Callback
